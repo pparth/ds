@@ -12,10 +12,10 @@ public class ApplicantRecommendationMapper implements ResultSetMapper<ApplicantR
     @Override
     public ApplicantRecommendation map(int i, ResultSet resultSet, StatementContext statementContext) throws SQLException {
         ApplicantRecommendation applicantRecommendation = new ApplicantRecommendation();
-        applicantRecommendation.setApplication_id(resultSet.getLong("application"));
+        applicantRecommendation.setApplicationId(resultSet.getLong("application"));
         applicantRecommendation.setAlgorithm(resultSet.getString("algorithm"));
         applicantRecommendation.setAnnotation(resultSet.getInt("annotation"));
-        applicantRecommendation.setScore(resultSet.getFloat("application_score"));
+        applicantRecommendation.setScore(resultSet.getDouble("application_score"));
         return applicantRecommendation;
     }
 }

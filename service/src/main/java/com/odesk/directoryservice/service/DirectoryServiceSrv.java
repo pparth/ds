@@ -4,9 +4,10 @@ import com.odesk.directoryservice.configuration.DirectoryServiceConf;
 import com.odesk.directoryservice.db.ApplicantRecommendationDAO;
 import com.odesk.directoryservice.resource.ApplicantRecommendationResource;
 import com.yammer.dropwizard.Service;
+import com.yammer.dropwizard.config.Bootstrap;
 import com.yammer.dropwizard.config.Environment;
-import com.yammer.dropwizard.db.Database;
-import com.yammer.dropwizard.db.DatabaseFactory;
+import com.yammer.dropwizard.jdbi.DBIFactory;
+import org.skife.jdbi.v2.DBI;
 
 public class DirectoryServiceSrv extends Service<DirectoryServiceConf> {
 
@@ -15,16 +16,21 @@ public class DirectoryServiceSrv extends Service<DirectoryServiceConf> {
     }
 
     private DirectoryServiceSrv() {
-        super("Odesk Directory Service");
+        super();
     }
 
     @Override
-    protected void initialize(DirectoryServiceConf directoryServiceConf, Environment environment) throws Exception {
+    public void initialize(Bootstrap<DirectoryServiceConf> directoryServiceConfBootstrap) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 
-        final DatabaseFactory factory = new DatabaseFactory(environment);
-        final Database db = factory.build(directoryServiceConf.getDatabaseConfiguration(), "mysql");
+    @Override
+    public void run(DirectoryServiceConf directoryServiceConf, Environment environment) throws Exception {
+        final DBIFactory factory = new DBIFactory();
+        final DBI db = factory.build(environment, directoryServiceConf.getDatabaseConfiguration(), "mysql");
 
         environment.addResource(new ApplicantRecommendationResource(db.onDemand(ApplicantRecommendationDAO.class)));
         // environment.addHealthCheck(new DatabaseHealthCheck());
     }
+
 }
