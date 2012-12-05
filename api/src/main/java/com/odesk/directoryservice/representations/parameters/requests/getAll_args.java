@@ -1,4 +1,4 @@
-package com.odesk.directoryservice.client.parameters.requests;
+package com.odesk.directoryservice.representations.parameters.requests;
 
 import org.apache.thrift.meta_data.FieldMetaData;
 import org.apache.thrift.protocol.TTupleProtocol;

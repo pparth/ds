@@ -1,4 +1,4 @@
-package com.odesk.directoryservice.client.parameters.responses;
+package com.odesk.directoryservice.representations.parameters.responses;
 
 import com.odesk.directoryservice.representations.ApplicantRecommendation;
 import org.apache.thrift.meta_data.FieldMetaData;
